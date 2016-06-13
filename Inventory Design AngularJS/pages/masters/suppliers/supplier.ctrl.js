@@ -60,7 +60,7 @@ scotchApp.controller('suppliersController', function ($rootScope, $scope, $http,
         var Status = true;
        
         //condition will check if user has left any field vacant
-        if (Name == null || City_Id == null || City_Id == "" || ContactNo == null || ContactNo2 == null || EmailId == null || EmailId2 == null || VatNo == null || TinNo == null || Street == null || Area == null || Pincode == null || Note == null) {
+        if (Name == null || City_Id == null || City_Id == "" ) {
             alert("fill the info");
             return;
         }

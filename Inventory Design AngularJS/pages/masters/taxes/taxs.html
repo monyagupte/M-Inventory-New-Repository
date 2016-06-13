@@ -127,7 +127,7 @@
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-4 control-label">Tax Value(%):</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" ng-model="tax" name="taxvalue" id="inputPassword3" placeholder="Tax Value" maxlength="2" ng-pattern="/^[0-9\s]*$/" required>
+                                            <input type="text" class="form-control" ng-model="tax" name="taxvalue" id="inputPassword3" placeholder="Tax Value"  ng-pattern="/^[0-9\s.]*$/" required>
                                         </div>
                                         <!-- Error Defination -->
                                         <div class="error-container" style="margin-bottom: 5px; margin-left:160px;" ng-show="signup1.taxvalue.$dirty && signup1.taxvalue.$invalid">

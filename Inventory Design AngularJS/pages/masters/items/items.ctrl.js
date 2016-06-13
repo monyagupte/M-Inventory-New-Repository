@@ -150,14 +150,14 @@ scotchApp.controller('itemController', function ($rootScope, $scope, $http, $loc
 
 
 
-       // alert(ItemName); alert(Code); alert(Manufacturer); alert(manuDate); alert(expiryDate); alert(SalePrice); alert(CostPrice); alert(ProfitPercentage); alert(PurchasePrice); alert(MRP); alert(StanderdUnit); alert(PurchaseUnit); alert(Category); alert(PurchaseTax); alert(SalesTax); alert(OpeningStock); alert(IdealQuantity); alert(ReorderQuantity); alert(MaxQuatity); alert(TotalQuatity); alert(AllowSales); alert(AllowPurchase); alert(AllowInword); alert(AllowOutword); alert(Description);
+        //alert(ItemName); alert(Code); alert(Manufacturer); alert(manuDate); alert(expiryDate); alert(SalePrice); alert(CostPrice); alert(ProfitPercentage); alert(PurchasePrice); alert(MRP); alert(StanderdUnit); alert(PurchaseUnit); alert(Category); alert(PurchaseTax); alert(SalesTax); alert(OpeningStock); alert(IdealQuantity); alert(ReorderQuantity); alert(MaxQuatity); alert(TotalQuatity); alert(AllowSales); alert(AllowPurchase); alert(AllowInword); alert(AllowOutword); alert(Description);
 
         //condition will check if user has left any field vacant
         //if (ItemName == null || Code == null || Manufacturer == null || SalePrice == null || CostPrice == null || ProfitPercentage == null || PurchasePrice == null || MRP == null || StanderdUnit == null || PurchaseUnit == null || Category == null || PurchaseTax == null || SalesTax == null || OpeningStock == null || IdealQuantity == null || ReorderQuantity == null || MaxQuatity == null || TotalQuatity == null || AllowSales == null || AllowPurchase == null || AllowInword == null || AllowOutword == null || Description == null) {
 
         //if (ItemName == null || Code == null || Manufacturer == null || SalePrice == null || CostPrice == null || ProfitPercentage == null || ProfitPercentage == "" || PurchasePrice == null || MRP == null || Category == null || PurchaseTax == null || SalesTax == null || OpeningStock == null || IdealQuantity == null || ReorderQuantity == null || MaxQuatity == null || TotalQuatity == null || AllowSales == null || AllowPurchase == null || AllowInword == null || AllowOutword == null || Description == null) {
        // if (ItemName == null || Code == null || Manufacturer == null || manuDate ==null||expiryDate==null|| SalePrice == null || CostPrice == null || ProfitPercentage == null || ProfitPercentage == "" || PurchasePrice == null || MRP == null || StanderdUnit == null || StanderdUnit == "" || PurchaseUnit == null || PurchaseUnit == "" || Category == null || Category == "" || PurchaseTax == null || PurchaseTax == "" || SalesTax == null || SalesTax == "" || OpeningStock == null || IdealQuantity == null || ReorderQuantity == null || MaxQuatity == null || TotalQuatity == null || AllowSales == null || AllowSales == "" || AllowPurchase == null || AllowPurchase == "" || AllowInword == null || AllowInword == "" || AllowOutword == null || AllowOutword == "" || Description == null) {
-        if(ItemName == null)
+        if (ItemName == null)
             {
             alert("fill the info");
             return;
@@ -443,11 +443,27 @@ scotchApp.controller('itemController', function ($rootScope, $scope, $http, $loc
 
     //DELETE
     $scope.deleteItem = function () {
+        alert('delete fun');
+        
         var item_Id = this.id;
+        alert(item_Id);
+        $http.delete("http://minvent.azurewebsites.net/api/view_Item/"+item_Id)
+                                 .success(function (res) { 
 
+                     alert('Data Deleted Successfully...');
+                     //further code will refresh the current database data on page
+                     $http.get('http://minvent.azurewebsites.net/api/view_Item')
+                    .success(function (res) {
+                        var x = res.length;
+                        $scope.x = x;
+                        //console.log(res);
+                        $scope.getItems = res;
 
-        $http.delete('http://minvent.azurewebsites.net/api/view_Item/' + item_Id)
-   /*  .success(function (res) {
+                    });
+                 })
+
+        /*$http.get('http://minvent.azurewebsites.net/api/view_Item/' + item_Id)
+     .success(function (res) {
          //console.log(res);
          $scope.getItemss = res;
 
@@ -552,22 +568,12 @@ scotchApp.controller('itemController', function ($rootScope, $scope, $http, $loc
                  Status: status,
              }
 
-         }) */
-         .success(function (response) {
+         })*/
 
-             alert('Data Deleted Successfully...');
-             //further code will refresh the current database data on page
-             $http.get('http://minvent.azurewebsites.net/api/view_Item')
-            .success(function (res) {
-                var x = res.length;
-                $scope.x = x;
-                //console.log(res);
-                $scope.getItems = res;
-                
-            });
+            
 
-         })
 
+    
     }
 
     //Empty fields
