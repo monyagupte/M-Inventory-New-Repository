@@ -35,7 +35,7 @@ scotchApp.controller('servicesController', function ($rootScope, $scope, $http, 
     $scope.save = function () {
         var serviceName = this.serviceName;
         var salePrise = this.salePrise;
-        var purchasePrise = this.purchasePrise;
+        var purchasePrise = 1;
         var Unit = this.unit;
         var category = this.category;
         var purchaseTax = this.purchaseTax;
@@ -45,8 +45,10 @@ scotchApp.controller('servicesController', function ($rootScope, $scope, $http, 
         var description = this.description;
         var status = true;
 
+        alert(purchasePrise);
+
         //condition will check if user has left any field vacant
-        if (serviceName == null || salePrise == null || purchasePrise == null || Unit == null || Unit == "" || category == null || category == "" || purchaseTax == null || purchaseTax == "" || salesTax == null || salesTax == "" || allowSales == null || allowSales == "" || allowPurchase == null || allowPurchase == "" || description == null) {
+        if (serviceName == null || salePrise == null || Unit == null || Unit == "" || category == null || category == "" || purchaseTax == null || purchaseTax == "" || salesTax == null || salesTax == "" || allowSales == null || allowSales == "" || allowPurchase == null || allowPurchase == "" || description == null) {
             alert("fill the info");
             return;
         }

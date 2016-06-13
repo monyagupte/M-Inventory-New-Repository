@@ -5328,7 +5328,7 @@ var nodeNames = "abbr|article|aside|audio|bdi|canvas|data|datalist|details|figca
 	rscriptTypeMasked = /^true\/(.*)/,
 	rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g,
 
-	// We have to close these tags to support XHTML (#157967)
+	// We have to close these tags to support XHTML (#152492)
 	wrapMap = {
 		option: [ 1, "<select multiple='multiple'>", "</select>" ],
 		legend: [ 1, "<fieldset>", "</fieldset>" ],

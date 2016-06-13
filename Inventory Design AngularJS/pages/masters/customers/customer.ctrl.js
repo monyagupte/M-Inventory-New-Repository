@@ -61,11 +61,15 @@ scotchApp.controller('customerController', function ($rootScope, $scope, $http, 
         var Status = true;
 
 
-
-       
+        $http.get('http://minvent.azurewebsites.net/api/Customer_View')
+     .success(function (res) {
+         $scope.result = res;
+         var name = result.Name;
+         alert(name);
+     }); 
 
         //condition will check if user has left any field vacant
-        if (Name == null || City_Id == null || City_Id == "" || ContactNo == null || ContactNo2 == null || EmailId == null || EmailId2 == null || VatNo == null || TinNo == null || Street == null || Area == null || Pincode == null || Note == null) {
+        if (Name == null || Name==name ) {
             alert("fill the info");
             return;
         }
@@ -80,7 +84,7 @@ scotchApp.controller('customerController', function ($rootScope, $scope, $http, 
                     City_ID: City_Id,
                     ContactNumber: ContactNo,
                     ContactNumber2: ContactNo2,
-                    EmailID: EmailId,
+                   EmailID: EmailId,
                     EmailID2: EmailId2,
                     VATNumber: VatNo,
                     TINNumber: TinNo,
@@ -100,7 +104,7 @@ scotchApp.controller('customerController', function ($rootScope, $scope, $http, 
                  //further code will refresh the current database data on page
 
 
-                 $http.get('http://minvent.azurewebsites.net/api/customer_view')
+                 $http.get('http://minvent.azurewebsites.net/api/Customer_View')
             .success(function (res) {
                 $scope.getCustomers = res;
             });
@@ -108,7 +112,7 @@ scotchApp.controller('customerController', function ($rootScope, $scope, $http, 
         }
 
         this.name = null;
-        this.city = "";
+        this.city = null;
         this.contactNo = null;
         this.contactNo2 = null;
         this.emailId = null;
@@ -199,7 +203,7 @@ scotchApp.controller('customerController', function ($rootScope, $scope, $http, 
         //    return;
         //}
         //condition will check if user has left any field vacant
-        if (Name == null || City_ID == null || City_ID == "" || ContactNo == null || ContactNo2 == null || EmailId == null || EmailId2 == null || VatNo == null || TinNo == null || Street == null || Area == null || Pincode == null || Note == null) {
+        if (Name == null ) {
             alert("fill the info");
             return;
         }
@@ -281,7 +285,7 @@ scotchApp.controller('customerController', function ($rootScope, $scope, $http, 
 
        var getCustomer = $scope.getCustomer;
 
-       var Name = getCustomer.Name;;
+       var Name = getCustomer.Name;
        var City_ID = getCustomer.City_ID;
        var ContactNo = getCustomer.ContactNumber;
        var ContactNo2 = getCustomer.ContactNumber2;
